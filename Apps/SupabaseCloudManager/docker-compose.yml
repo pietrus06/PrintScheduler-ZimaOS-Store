@@ -18,6 +18,9 @@ services:
       SUPABASE_API_BASE: https://api.supabase.com/v1
       SUPABASE_REQUEST_TIMEOUT: "30"
       TZ: Europe/Monaco
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
     healthcheck:
       test:
         - CMD-SHELL
