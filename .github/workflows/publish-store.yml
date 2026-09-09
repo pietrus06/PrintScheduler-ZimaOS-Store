@@ -18,8 +18,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate Compose
-        run: docker compose -f Apps/PrintScheduler/docker-compose.yml config -q
+      - name: Validate all Compose manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            echo "Validating $file"
+            docker compose -f "$file" config -q
+          done < <(find Apps -mindepth 2 -maxdepth 2 -name docker-compose.yml -print0)
 
       - name: Build ZimaOS AppStore v2
         uses: IceWhaleTech/build-appstore-action@v1
