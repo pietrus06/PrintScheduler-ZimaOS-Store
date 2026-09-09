@@ -2,12 +2,12 @@
   "version": 2,
   "store_id": "pietrus06-printscheduler-store",
   "name": {
-    "en_US": "PrintScheduler Store",
-    "fr_FR": "Boutique PrintScheduler"
+    "en_US": "Pierre ZimaOS Store",
+    "fr_FR": "Boutique Pierre ZimaOS"
   },
   "description": {
-    "en_US": "Personal ZimaOS store for PrintScheduler and its automatic update configuration.",
-    "fr_FR": "Boutique ZimaOS personnelle pour PrintScheduler et sa configuration de mise à jour automatique."
+    "en_US": "Personal ZimaOS store for PrintScheduler, Supabase Manager and Supabase Cloud Manager.",
+    "fr_FR": "Boutique ZimaOS personnelle pour PrintScheduler, Supabase Manager et Supabase Cloud Manager."
   },
   "maintainer": "pietrus06",
   "url": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store"
