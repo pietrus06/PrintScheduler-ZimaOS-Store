@@ -1,0 +1,55 @@
+name: supabase-cloud-manager
+services:
+  supabase-cloud-manager:
+    image: ghcr.io/pietrus06/printscheduler:supabase-cloud-manager-latest
+    container_name: supabase-cloud-manager
+    restart: unless-stopped
+    ports:
+      - target: 8097
+        published: "8097"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/SupabaseCloudManager
+        target: /app/data
+    environment:
+      PORT: "8097"
+      DATA_ROOT: /app/data
+      SUPABASE_API_BASE: https://api.supabase.com/v1
+      SUPABASE_REQUEST_TIMEOUT: "30"
+      TZ: Europe/Monaco
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - curl --fail --silent http://localhost:8097/health >/dev/null
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+x-casaos:
+  id: fr.pietrus06.supabase-cloud-manager
+  main: supabase-cloud-manager
+  index: /
+  port_map: "8097"
+  scheme: http
+  icon: https://cdn.jsdelivr.net/gh/pietrus06/PrintScheduler-ZimaOS-Store@main/Apps/SupabaseCloudManager/icon.svg
+  title:
+    en_US: Supabase Cloud Manager
+    fr_FR: Supabase Cloud Manager
+  tagline:
+    en_US: Manage multiple Supabase Cloud accounts and projects from one secure dashboard.
+    fr_FR: Gérez plusieurs comptes et projets Supabase Cloud depuis un tableau de bord sécurisé.
+  description:
+    en_US: Secure multi-account dashboard for Supabase Cloud with encrypted access-token storage, consolidated projects, health, API keys and project lifecycle actions.
+    fr_FR: Tableau de bord multi-comptes pour Supabase Cloud avec jetons chiffrés, inventaire centralisé, santé des services, clés API et actions de cycle de vie.
+  author: pietrus06
+  developer: Pierre
+  category: Developer
+  architectures:
+    - amd64
+  version: "0.1.0"
+  update_at: "2026-09-09"
+  release_notes:
+    en_US: Initial release.
+    fr_FR: Première version.
+  repo: https://github.com/pietrus06/PrintScheduler
