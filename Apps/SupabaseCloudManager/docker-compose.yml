@@ -50,9 +50,9 @@ x-casaos:
   category: Developer
   architectures:
     - amd64
-  version: "0.1.1"
+  version: "0.1.2"
   update_at: "2026-09-09"
   release_notes:
-    en_US: Fix project detail HTTP 500 errors and support restricted PAT permissions more gracefully.
-    fr_FR: Corrige les erreurs HTTP 500 dans le détail des projets et améliore la compatibilité avec les PAT à permissions limitées.
+    en_US: Adds optional account login email, encrypted password storage and encrypted notes with protected temporary password reveal.
+    fr_FR: Ajoute l’e-mail de connexion, le stockage chiffré du mot de passe et des notes, avec affichage temporaire protégé du mot de passe.
   repo: https://github.com/pietrus06/PrintScheduler
