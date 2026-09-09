@@ -35,7 +35,7 @@ x-casaos:
   index: /
   port_map: "8097"
   scheme: http
-  icon: https://cdn.jsdelivr.net/gh/pietrus06/PrintScheduler-ZimaOS-Store@main/Apps/SupabaseCloudManager/icon.svg
+  icon: https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/main/Apps/SupabaseCloudManager/icon.svg
   title:
     en_US: Supabase Cloud Manager
     fr_FR: Supabase Cloud Manager
@@ -50,9 +50,9 @@ x-casaos:
   category: Developer
   architectures:
     - amd64
-  version: "0.1.0"
+  version: "0.1.1"
   update_at: "2026-09-09"
   release_notes:
-    en_US: Initial release.
-    fr_FR: Première version.
+    en_US: Fix project detail HTTP 500 errors and support restricted PAT permissions more gracefully.
+    fr_FR: Corrige les erreurs HTTP 500 dans le détail des projets et améliore la compatibilité avec les PAT à permissions limitées.
   repo: https://github.com/pietrus06/PrintScheduler
