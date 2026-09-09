@@ -1,0 +1,64 @@
+name: supabase-manager
+
+services:
+  supabase-manager:
+    image: ghcr.io/pietrus06/printscheduler:supabase-manager-latest
+    container_name: supabase-manager
+    restart: unless-stopped
+    ports:
+      - target: 8096
+        published: "8096"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+      - type: bind
+        source: /DATA/AppData/SupabaseManager
+        target: /DATA/AppData/SupabaseManager
+      - type: bind
+        source: /DATA/AppData/SupabaseProjects
+        target: /DATA/AppData/SupabaseProjects
+    environment:
+      PORT: "8096"
+      DATA_ROOT: /DATA/AppData/SupabaseManager
+      PROJECTS_ROOT: /DATA/AppData/SupabaseProjects
+      SUPABASE_UPSTREAM_REPO: https://github.com/supabase/supabase.git
+      TZ: Europe/Monaco
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - curl --fail --silent http://127.0.0.1:8096/health >/dev/null || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+x-casaos:
+  id: fr.pietrus06.supabase-manager
+  main: supabase-manager
+  index: /
+  port_map: "8096"
+  scheme: http
+  icon: https://cdn.jsdelivr.net/gh/pietrus06/PrintScheduler-ZimaOS-Store@main/Apps/SupabaseManager/icon.svg
+  title:
+    en_US: Supabase Manager
+    fr_FR: Supabase Manager
+  tagline:
+    en_US: Create and manage multiple self-hosted Supabase projects on ZimaOS.
+    fr_FR: Créez et gérez plusieurs projets Supabase auto-hébergés sur ZimaOS.
+  description:
+    en_US: A ZimaOS dashboard that provisions independent Supabase stacks from the official Supabase Docker template, generates secrets, allocates ports, manages lifecycle, logs, connection keys and backups.
+    fr_FR: Tableau de bord ZimaOS permettant de créer des stacks Supabase indépendantes depuis le template Docker officiel, générer les secrets, attribuer automatiquement les ports et gérer démarrage, arrêt, logs, clés de connexion et sauvegardes.
+  author: pietrus06
+  developer: Pierre
+  category: Developer
+  architectures:
+    - amd64
+  version: "0.1.0"
+  update_at: "2026-09-09"
+  release_notes:
+    en_US: Initial multi-project Supabase Manager release.
+    fr_FR: Première version du gestionnaire multi-projets Supabase.
+  repo: https://github.com/pietrus06/PrintScheduler
+  support: https://github.com/pietrus06/PrintScheduler/issues
