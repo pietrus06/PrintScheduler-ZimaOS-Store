@@ -1,0 +1,81 @@
+name: printscheduler
+
+services:
+  printscheduler:
+    image: ghcr.io/pietrus06/printscheduler:latest
+    container_name: printscheduler
+    restart: unless-stopped
+    ports:
+      - target: 8080
+        published: "8095"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/PrintScheduler/data
+        target: /app/data
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      Storage__DataDirectory: /app/data
+      Cups__Server: localhost:631
+      TZ: Europe/Monaco
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          curl --fail --silent http://localhost:8080/health >/dev/null &&
+          lpstat -h localhost:631 -p Ricoh_IM_C5500 >/dev/null 2>&1 &&
+          lpstat -h localhost:631 -p Xerox_C8055 >/dev/null 2>&1
+      interval: 30s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  updater:
+    image: getwud/wud:8.4.0
+    container_name: printscheduler-wud
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    environment:
+      WUD_WATCHER_LOCAL_WATCHBYDEFAULT: "false"
+      WUD_WATCHER_LOCAL_WATCHATSTART: "true"
+      WUD_WATCHER_LOCAL_CRON: "*/15 * * * *"
+      WUD_TRIGGER_DOCKER_LOCAL_PRUNE: "true"
+      TZ: Europe/Monaco
+    labels:
+      wud.watch: "false"
+
+x-casaos:
+  id: fr.pietrus06.printscheduler
+  main: printscheduler
+  index: /
+  port_map: "8095"
+  scheme: http
+  icon: https://cdn.jsdelivr.net/gh/pietrus06/PrintScheduler-ZimaOS-Store@main/Apps/PrintScheduler/icon.svg
+  title:
+    en_US: PrintScheduler
+    fr_FR: PrintScheduler
+  tagline:
+    en_US: Schedule network PDF printing and email delivery.
+    fr_FR: Programmez l'impression réseau et l'envoi de PDF par e-mail.
+  description:
+    en_US: PrintScheduler runs continuously on ZimaOS, schedules PDF jobs for network printers through CUPS, sends PDFs by SMTP, stores reusable email recipients and keeps its data in a persistent host directory. A bundled WUD service watches the mutable latest image digest and automatically recreates PrintScheduler when a new image is published.
+    fr_FR: PrintScheduler fonctionne en continu sur ZimaOS. Il programme les impressions PDF sur les copieurs réseau via CUPS, programme les envois PDF par SMTP, mémorise les destinataires e-mail et conserve toutes ses données dans un dossier persistant. Un service WUD intégré surveille le digest de l'image latest et recrée automatiquement PrintScheduler lorsqu'une nouvelle image est publiée.
+  author: pietrus06
+  developer: Pierre
+  category: Productivity
+  architectures:
+    - amd64
+  version: "1.0.0"
+  update_at: "2026-09-09"
+  release_notes:
+    en_US: Initial ZimaOS store release with automatic image digest updates.
+    fr_FR: Première version du store ZimaOS avec mise à jour automatique du digest de l'image Docker.
+  repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
+  support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
