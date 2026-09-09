@@ -1,0 +1,41 @@
+name: Build and publish ZimaOS store
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Compose
+        run: docker compose -f Apps/PrintScheduler/docker-compose.yml config -q
+
+      - name: Build ZimaOS AppStore v2
+        uses: IceWhaleTech/build-appstore-action@v1
+        with:
+          source: .
+          output: dist
+          base-url: https://cdn.jsdelivr.net/gh/${{ github.repository }}@gh-pages
+          cache-file: .cache/build_appstore/image-size-cache.json
+          digest-cache-file: .cache/build_appstore/image-digest-cache.json
+
+      - name: Publish store to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
+          force_orphan: true
+          enable_jekyll: false
+          commit_message: "Publish ZimaOS store ${{ github.sha }}"
