@@ -1,0 +1,4 @@
+getwud/wud:8.4.0 sha256:0cd1207161156bad57ce8446991d571387f4a7ced87c976709886b29e31fecf1
+ghcr.io/pietrus06/printscheduler:latest sha256:d30079f326a9d5c922b35e20a8b730f129e0925116584f9de307c74786eac579
+ghcr.io/pietrus06/printscheduler:supabase-cloud-manager-latest sha256:e389684d55ec9793b3371d93e217bb8fcd0a8af8447673279c2229664a408c1b
+ghcr.io/pietrus06/printscheduler:supabase-manager-latest sha256:d68adc060eca86c6480acff56e89f2e2c0cdd5acd876b1bbab16fb875aaf064d

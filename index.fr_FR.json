@@ -1,0 +1,19 @@
+{
+  "apps": [
+    {
+      "id": "fr.pietrus06.printscheduler",
+      "tagline": "Programmez l'impression réseau et l'envoi de PDF par e-mail.",
+      "title": "PrintScheduler"
+    },
+    {
+      "id": "fr.pietrus06.supabase-cloud-manager",
+      "tagline": "Gérez plusieurs comptes et projets Supabase Cloud depuis un tableau de bord sécurisé.",
+      "title": "Supabase Cloud Manager"
+    },
+    {
+      "id": "fr.pietrus06.supabase-manager",
+      "tagline": "Créez et gérez plusieurs projets Supabase auto-hébergés sur ZimaOS.",
+      "title": "Supabase Manager"
+    }
+  ]
+}

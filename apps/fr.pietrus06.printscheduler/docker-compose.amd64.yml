@@ -1,0 +1,64 @@
+name: printscheduler
+
+services:
+  printscheduler:
+    image: ghcr.io/pietrus06/printscheduler:latest@sha256:d30079f326a9d5c922b35e20a8b730f129e0925116584f9de307c74786eac579
+    container_name: printscheduler
+    restart: unless-stopped
+    ports:
+      - target: 8080
+        published: "8095"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/PrintScheduler/data
+        target: /app/data
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      Storage__DataDirectory: /app/data
+      Cups__Server: localhost:631
+      TZ: Europe/Monaco
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          curl --fail --silent http://localhost:8080/health >/dev/null &&
+          lpstat -h localhost:631 -p Ricoh_IM_C5500 >/dev/null 2>&1 &&
+          lpstat -h localhost:631 -p Xerox_C8055 >/dev/null 2>&1
+      interval: 30s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  updater:
+    image: getwud/wud:8.4.0@sha256:0cd1207161156bad57ce8446991d571387f4a7ced87c976709886b29e31fecf1
+    container_name: printscheduler-wud
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    environment:
+      WUD_WATCHER_LOCAL_WATCHBYDEFAULT: "false"
+      WUD_WATCHER_LOCAL_WATCHATSTART: "true"
+      WUD_WATCHER_LOCAL_CRON: "*/15 * * * *"
+      WUD_TRIGGER_DOCKER_LOCAL_PRUNE: "true"
+      TZ: Europe/Monaco
+    labels:
+      wud.watch: "false"
+
+x-casaos:
+  id: fr.pietrus06.printscheduler
+  main: printscheduler
+  index: /
+  port_map: "8095"
+  scheme: http
+  icon: https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages/apps/fr.pietrus06.printscheduler/assets/icon.svg
+  title:
+    en_US: PrintScheduler
+    fr_FR: PrintScheduler
+  version: "1.0.0"

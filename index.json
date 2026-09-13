@@ -1,0 +1,68 @@
+{
+  "version": 2,
+  "updated_at": "2026-09-13T06:12:58Z",
+  "app_count": 3,
+  "base_url": "https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages",
+  "apps": [
+    {
+      "id": "fr.pietrus06.printscheduler",
+      "title": "PrintScheduler",
+      "tagline": "Schedule network PDF printing and email delivery.",
+      "category": "Productivity",
+      "categories": [
+        "productivity"
+      ],
+      "author": "pietrus06",
+      "developer": "Pierre",
+      "architectures": [
+        "amd64"
+      ],
+      "icon": "/apps/fr.pietrus06.printscheduler/assets/icon.svg",
+      "thumbnail": "",
+      "compose_url": "/apps/fr.pietrus06.printscheduler/docker-compose.yml",
+      "meta_url": "/apps/fr.pietrus06.printscheduler/meta.json",
+      "content_hash": "ab35f621",
+      "version": "1.0.0"
+    },
+    {
+      "id": "fr.pietrus06.supabase-cloud-manager",
+      "title": "Supabase Cloud Manager",
+      "tagline": "Manage multiple Supabase Cloud accounts and projects from one secure dashboard.",
+      "category": "Developer",
+      "categories": [
+        "developer"
+      ],
+      "author": "pietrus06",
+      "developer": "Pierre",
+      "architectures": [
+        "amd64"
+      ],
+      "icon": "/apps/fr.pietrus06.supabase-cloud-manager/assets/icon.svg",
+      "thumbnail": "",
+      "compose_url": "/apps/fr.pietrus06.supabase-cloud-manager/docker-compose.yml",
+      "meta_url": "/apps/fr.pietrus06.supabase-cloud-manager/meta.json",
+      "content_hash": "097237b0",
+      "version": "0.1.2"
+    },
+    {
+      "id": "fr.pietrus06.supabase-manager",
+      "title": "Supabase Manager",
+      "tagline": "Create and manage multiple self-hosted Supabase projects on ZimaOS.",
+      "category": "Developer",
+      "categories": [
+        "developer"
+      ],
+      "author": "pietrus06",
+      "developer": "Pierre",
+      "architectures": [
+        "amd64"
+      ],
+      "icon": "/apps/fr.pietrus06.supabase-manager/assets/icon.svg",
+      "thumbnail": "",
+      "compose_url": "/apps/fr.pietrus06.supabase-manager/docker-compose.yml",
+      "meta_url": "/apps/fr.pietrus06.supabase-manager/meta.json",
+      "content_hash": "f0c76be5",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "tagline": "Schedule network PDF printing and email delivery.",
+  "description": "PrintScheduler runs continuously on ZimaOS, schedules PDF jobs for network printers through CUPS, sends PDFs by SMTP, stores reusable email recipients and keeps its data in a persistent host directory. A bundled WUD service watches the mutable latest image digest and automatically recreates PrintScheduler when a new image is published.",
+  "author": "pietrus06",
+  "developer": "Pierre",
+  "category": "Productivity",
+  "architectures": [
+    "amd64"
+  ],
+  "update_at": "2026-09-09",
+  "repo": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store",
+  "support": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues",
+  "title": "PrintScheduler",
+  "release_note": "Initial ZimaOS store release with automatic image digest updates.",
+  "base_url": "https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages",
+  "id": "fr.pietrus06.printscheduler",
+  "version": "1.0.0",
+  "categories": [
+    "productivity"
+  ],
+  "min_memory": 0,
+  "min_image_size": {
+    "amd64": 267816344
+  }
+}
