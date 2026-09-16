@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "store_id": "pietrus06-printscheduler-store",
+  "name": "Pierre ZimaOS Store",
+  "description": "Personal ZimaOS store for PrintScheduler, Supabase Manager and Supabase Cloud Manager.",
+  "maintainer": "pietrus06",
+  "url": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store"
+}
