@@ -1,0 +1,71 @@
+name: galaxy-visual
+
+services:
+  galaxy-visual:
+    image: ghcr.io/pietrus06/printscheduler:galaxy-visual-latest
+    container_name: galaxy-visual
+    restart: unless-stopped
+    ports:
+      - target: 8097
+        published: "8098"
+        protocol: tcp
+    environment:
+      DATA_DIR: /data
+      PORT: "8097"
+      COOKIE_SECURE: "false"
+      TZ: Europe/Monaco
+    volumes:
+      - galaxy-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8097/health', timeout=4)"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  galaxy-data:
+    name: galaxy_visual_data
+
+x-casaos:
+  id: fr.pietrus06.galaxy-visual
+  main: galaxy-visual
+  index: /
+  port_map: "8098"
+  scheme: http
+  icon: https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/main/Apps/GalaxyVisual/icon.svg
+  title:
+    en_US: Galaxy Visual
+    fr_FR: Galaxy Visual
+  tagline:
+    en_US: Site plans and visual detector placement.
+    fr_FR: Plans des sites et placement graphique des détecteurs.
+  description:
+    en_US: Import PDF or image floor plans, place detectors, organize sites and panels, and try simulated alarms in an isolated demo. Persistent data and ZIP backups. Direct Honeywell communication and arming controls are not implemented. On first launch, use the setup code from the container logs to create your administrator account.
+    fr_FR: Importez vos plans PDF ou images, placez les détecteurs et organisez vos sites et centrales. Une démonstration isolée permet de simuler des alarmes graphiques. Données persistantes et sauvegardes ZIP. La connexion directe Honeywell et les commandes d’armement ne sont pas encore implémentées. Au premier lancement, créez votre compte administrateur avec le code indiqué dans les journaux du conteneur.
+  author: pietrus06
+  developer: Pierre
+  category: Utilities
+  architectures:
+    - amd64
+  version: "0.1.0"
+  update_at: "2026-09-16"
+  release_notes:
+    en_US: Initial release with interactive plans, persistent detector positions, accounts, event journal and isolated demo. Direct Galaxy connection pending.
+    fr_FR: Première version avec plans interactifs, positions persistantes, comptes, journal et démonstration isolée. Raccordement direct Galaxy à réaliser.
+  repo: https://github.com/pietrus06/PrintScheduler
+  support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
