@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "Apps/QRStudio/**"
+      - "Apps/QRStudioV2/**"
       - ".github/workflows/publish-qr-studio.yml"
   workflow_dispatch:
 
@@ -38,5 +39,6 @@ jobs:
           tags: |
             ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-latest
             ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-1.1.2
+            ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.0.0
           cache-from: type=gha
           cache-to: type=gha,mode=max

@@ -1,0 +1,59 @@
+name: qr-studio-v2
+services:
+  qr-studio-v2:
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.0.0
+    pull_policy: always
+    container_name: qr-studio-v2
+    restart: unless-stopped
+    ports:
+      - target: 8787
+        published: "8100"
+        protocol: tcp
+    environment:
+      PORT: "8787"
+      DATA_DIR: /app/data
+      TZ: Europe/Monaco
+    volumes:
+      - type: bind
+        source: /DATA/AppData/QRStudioV2
+        target: /app/data
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget -qO- http://localhost:8787/health >/dev/null
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+x-casaos:
+  id: fr.pietrus06.qr-studio-v2
+  main: qr-studio-v2
+  index: /
+  port_map: "8100"
+  scheme: http
+  icon: https://cdn.jsdelivr.net/gh/pietrus06/PrintScheduler-ZimaOS-Store@main/Apps/QRStudioV2/icon.svg
+  title:
+    en_US: QR Studio V2
+    fr_FR: QR Studio V2
+  tagline:
+    en_US: Generate numbered QR codes with duplicate protection and adjustable labels.
+    fr_FR: Générez des QR codes numérotés avec protection des doublons et texte réglable.
+  description:
+    en_US: New independent QR Studio application with persistent generation history, duplicate warning or blocking, adjustable label size, PDF export and printing.
+    fr_FR: Nouvelle application QR Studio indépendante avec historique persistant, avertissement ou blocage des doublons, taille du texte réglable, export PDF et impression.
+  author: pietrus06
+  developer: Pierre
+  category: Utilities
+  architectures:
+    - amd64
+    - arm64
+  version: "2.0.0"
+  update_at: "2026-09-17"
+  release_notes:
+    en_US: Independent V2 application using a dedicated image, container, port and data directory.
+    fr_FR: Application V2 indépendante avec image, conteneur, port et stockage dédiés.
+  repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
+  support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
