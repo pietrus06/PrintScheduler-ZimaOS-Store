@@ -2,6 +2,7 @@ name: qr-studio
 services:
   qr-studio:
     image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-latest
+    pull_policy: always
     container_name: qr-studio
     restart: unless-stopped
     ports:
@@ -49,10 +50,10 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  version: "1.1.0"
+  version: "1.1.1"
   update_at: "2026-09-17"
   release_notes:
-    en_US: Persistent generation history, duplicate warnings or blocking, and adjustable label size.
-    fr_FR: Historique persistant, avertissement ou blocage des doublons et taille du texte réglable.
+    en_US: Forces image updates and disables stale interface caching.
+    fr_FR: Force le téléchargement des mises à jour et supprime le cache de l’ancienne interface.
   repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
   support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues

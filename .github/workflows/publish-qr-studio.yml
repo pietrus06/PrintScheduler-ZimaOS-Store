@@ -37,6 +37,6 @@ jobs:
           push: true
           tags: |
             ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-latest
-            ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-1.1.0
+            ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-1.1.1
           cache-from: type=gha
           cache-to: type=gha,mode=max

@@ -38,7 +38,11 @@ app.post('/api/qr/mark', (req, res) => {
   saveHistory();
   res.json({ saved: req.body.codes.length });
 });
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1h' }));
+app.use(express.static(path.join(__dirname, 'public'), {
+  etag: true,
+  maxAge: 0,
+  setHeaders: res => res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate')
+}));
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 app.get('*', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 app.listen(port, '0.0.0.0', () => console.log(`QR Studio listening on ${port}`));
