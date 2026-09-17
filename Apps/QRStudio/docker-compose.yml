@@ -10,7 +10,12 @@ services:
         protocol: tcp
     environment:
       PORT: "8787"
+      DATA_DIR: /app/data
       TZ: Europe/Monaco
+    volumes:
+      - type: bind
+        source: /DATA/AppData/QRStudio
+        target: /app/data
     labels:
       wud.watch: "true"
       wud.watch.digest: "true"
@@ -44,10 +49,10 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  version: "1.0.0"
+  version: "1.1.0"
   update_at: "2026-09-17"
   release_notes:
-    en_US: Initial release of QR Studio.
-    fr_FR: Première version de QR Studio.
+    en_US: Persistent generation history, duplicate warnings or blocking, and adjustable label size.
+    fr_FR: Historique persistant, avertissement ou blocage des doublons et taille du texte réglable.
   repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
   support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
