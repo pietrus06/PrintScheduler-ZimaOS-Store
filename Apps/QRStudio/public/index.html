@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07111f"><title>QR Studio</title>
+  <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="shell">
+  <header><div class="brand"><span class="mark">QR</span><div><h1>QR Studio</h1><p>Générateur PDF numéroté</p></div></div><span class="local">100 % local</span></header>
+  <section class="workspace">
+    <form id="generator-form" class="panel" novalidate>
+      <div class="section-title"><span>01</span><div><h2>Contenu</h2><p>Ce qui sera encodé et affiché sous chaque QR code.</p></div></div>
+      <label>Texte fixe<input id="prefix" value="Emplacement" maxlength="120" required></label>
+      <div class="row three"><label>Séparateur<input id="separator" value=" " maxlength="10"></label><label>Premier numéro<input id="start" type="number" value="1" min="0" max="999999" required></label><label>Dernier numéro<input id="end" type="number" value="200" min="0" max="999999" required></label></div>
+      <div class="row two"><label>Nombre de chiffres<select id="padding"><option value="0">Automatique</option><option value="2">2 (01)</option><option value="3">3 (001)</option><option value="4">4 (0001)</option><option value="5">5 (00001)</option></select></label><label>Texte après le numéro <span>(facultatif)</span><input id="suffix" placeholder="ex. — Box A" maxlength="80"></label></div>
+      <div class="section-title spaced"><span>02</span><div><h2>Mise en page</h2><p>Format d’impression du document.</p></div></div>
+      <div class="mode-grid" role="radiogroup" aria-label="Mise en page"><label class="mode selected"><input type="radio" name="layout" value="grid" checked><strong>Maximum par page</strong><small>Planche compacte sur A4</small></label><label class="mode"><input type="radio" name="layout" value="single"><strong>Un QR par page</strong><small>Grand format centré</small></label></div>
+      <div id="grid-options" class="row two compact"><label>Taille cible du QR<select id="qr-size"><option value="25">25 mm</option><option value="30">30 mm</option><option value="35" selected>35 mm</option><option value="40">40 mm</option><option value="50">50 mm</option><option value="60">60 mm</option></select></label><label>Marge de page<select id="margin"><option value="8">8 mm</option><option value="10" selected>10 mm</option><option value="15">15 mm</option><option value="20">20 mm</option></select></label></div>
+      <div id="error" class="error" role="alert" hidden></div>
+      <div class="actions"><button id="download" type="submit"><span>Générer et télécharger le PDF</span><b>↓</b></button><button id="print" type="button" class="secondary">Imprimer</button></div>
+    </form>
+    <aside class="preview-card"><div class="preview-head"><span>Aperçu</span><span id="layout-badge">Planche A4</span></div><div class="paper" id="paper"><div class="sample"><canvas id="sample-qr"></canvas><strong id="sample-label">Emplacement 1</strong></div></div><dl><div><dt>QR codes</dt><dd id="count">200</dd></div><div><dt>Par page</dt><dd id="per-page">20</dd></div><div><dt>Pages estimées</dt><dd id="pages">10</dd></div></dl><p class="hint">La plage est inclusive : de 1 à 200 produit exactement 200 QR codes.</p></aside>
+  </section>
+</main><div id="toast" aria-live="polite"></div><script src="/app.js"></script>
+</body></html>

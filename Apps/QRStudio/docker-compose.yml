@@ -1,0 +1,53 @@
+name: qr-studio
+services:
+  qr-studio:
+    image: ghcr.io/pietrus06/printscheduler:qr-studio-latest
+    container_name: qr-studio
+    restart: unless-stopped
+    ports:
+      - target: 8787
+        published: "8099"
+        protocol: tcp
+    environment:
+      PORT: "8787"
+      TZ: Europe/Monaco
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget -qO- http://localhost:8787/health >/dev/null
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+x-casaos:
+  id: fr.pietrus06.qr-studio
+  main: qr-studio
+  index: /
+  port_map: "8099"
+  scheme: http
+  icon: https://cdn.jsdelivr.net/gh/pietrus06/PrintScheduler-ZimaOS-Store@main/Apps/QRStudio/icon.svg
+  title:
+    en_US: QR Studio
+    fr_FR: QR Studio
+  tagline:
+    en_US: Generate numbered QR codes and printable PDF sheets.
+    fr_FR: Générez des QR codes numérotés et des planches PDF imprimables.
+  description:
+    en_US: Local QR code generator with fixed text, inclusive number ranges, zero padding, one code per page or compact A4 sheets, PDF export and printing.
+    fr_FR: Générateur local de QR codes avec texte fixe, plage de numéros inclusive, zéros automatiques, un code par page ou planches A4 compactes, export PDF et impression.
+  author: pietrus06
+  developer: Pierre
+  category: Utilities
+  architectures:
+    - amd64
+    - arm64
+  version: "1.0.0"
+  update_at: "2026-09-17"
+  release_notes:
+    en_US: Initial release of QR Studio.
+    fr_FR: Première version de QR Studio.
+  repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
+  support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues

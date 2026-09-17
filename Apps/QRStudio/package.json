@@ -1,0 +1,17 @@
+{
+  "name": "qr-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/app.js --bundle --minify --outfile=public/app.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "4.22.3",
+    "jspdf": "4.2.1",
+    "qrcode": "1.5.4"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.0"
+  }
+}
