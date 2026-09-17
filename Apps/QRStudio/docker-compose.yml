@@ -1,7 +1,7 @@
 name: qr-studio
 services:
   qr-studio:
-    image: ghcr.io/pietrus06/printscheduler:qr-studio-latest
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-latest
     container_name: qr-studio
     restart: unless-stopped
     ports:
