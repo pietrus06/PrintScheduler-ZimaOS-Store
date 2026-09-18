@@ -17,7 +17,7 @@ parts = sorted(Path('/tmp/source-parts').glob('source.part*.b64'))
 encoded = ''.join(p.read_text(encoding='utf-8').strip() for p in parts)
 data = base64.b64decode(encoded, validate=True)
 digest = hashlib.sha256(data).hexdigest()
-expected = 'fb8ee4e3d65ae78b2acf1f5fa8d8a147858607854a9e6fd56a21f7b900c2e435'
+expected = 'fd86909b8720edf851b0683ef4f3908e06acca324dc06cdf540f88595171a581'
 if digest != expected:
     raise SystemExit(f'Source archive checksum mismatch: {digest}')
 Path('/tmp/source.zip').write_bytes(data)
@@ -30,7 +30,49 @@ from pathlib import Path
 
 p = Path('/tmp/src/app/exporter.py')
 s = p.read_text(encoding='utf-8')
-old = '''    async def _open_invoice_menu(self, scope) -> None:
+
+old_url = '''            url = (
+                f"{self.amazon_base_url}/gp/css/order-history"
+                f"?orderFilter=year-{options.year}&startIndex={start_index}&disableCsd=no-js"
+            )
+'''
+new_url = '''            url = (
+                f"{self.amazon_base_url}/your-orders/orders"
+                f"?timeFilter=year-{options.year}&startIndex={start_index}"
+            )
+'''
+if old_url not in s:
+    raise SystemExit('Expected legacy order-history URL block not found')
+s = s.replace(old_url, new_url)
+
+old_login = '''            normalized = normalize_text(body_text)
+            if "/ap/signin" in current or "identifiez-vous" in normalized[:1500] or "sign in" in normalized[:1200]:
+                raise RuntimeError("La session Amazon n'est pas connectée. Ouvre Chromium et connecte-toi à Amazon.fr.")
+
+            page_orders = unique_order_ids(body_text)
+'''
+new_login = '''            normalized = normalize_text(body_text)
+            if "/ap/signin" in current or "identifiez-vous" in normalized[:1500] or "sign in" in normalized[:1200]:
+                raise RuntimeError("La session Amazon n'est pas connectée. Ouvre Chromium et connecte-toi à Amazon.fr.")
+
+            # Amazon can silently fall back to "3 derniers mois". Abort instead
+            # of producing an incomplete annual export.
+            expected_filter = f"timefilter=year-{options.year}"
+            if expected_filter not in current:
+                raise RuntimeError(
+                    f"Amazon n'a pas appliqué le filtre {options.year}. "
+                    "L'export est arrêté pour éviter de prendre seulement les 3 derniers mois."
+                )
+            if page_index == 0:
+                self.log(f"Filtre Amazon vérifié : année {options.year}.")
+
+            page_orders = unique_order_ids(body_text)
+'''
+if old_login not in s:
+    raise SystemExit('Expected login/order scan block not found')
+s = s.replace(old_login, new_login)
+
+old_menu = '''    async def _open_invoice_menu(self, scope) -> None:
         selectors = [
             "a:has-text('Facture')",
             "button:has-text('Facture')",
@@ -57,9 +99,9 @@ old = '''    async def _open_invoice_menu(self, scope) -> None:
                 continue
 
 '''
-new = '''    async def _open_invoice_menu(self, scope) -> None:
-        # On Amazon.fr, "Facture" is usually an AUI popover trigger.
-        # The real invoice.pdf link is injected asynchronously after the click.
+new_menu = '''    async def _open_invoice_menu(self, scope) -> None:
+        # Amazon.fr exposes invoice links through an AUI popover. The real
+        # invoice.pdf href is injected asynchronously after clicking "Facture".
         selectors = [
             ".a-popover-trigger:has-text('Facture')",
             ".a-popover-trigger:has-text('Invoice')",
@@ -103,9 +145,6 @@ new = '''    async def _open_invoice_menu(self, scope) -> None:
                         continue
 
                     page = loc.page
-                    # Historical and current Amazon.fr implementations expose
-                    # invoice links inside #a-popover-content-N.  Wait for the
-                    # asynchronous content instead of assuming it is immediate.
                     invoice_links = page.locator(
                         "[id^='a-popover-content-'] a[href*='invoice.pdf'], "
                         "[id^='a-popover-content-'] a[href]:has-text('Facture'), "
@@ -114,23 +153,25 @@ new = '''    async def _open_invoice_menu(self, scope) -> None:
                     try:
                         await invoice_links.first.wait_for(state="attached", timeout=10_000)
                     except Exception:
-                        # Give slower Marketplace/AUI responses a final grace period.
                         await asyncio.sleep(1.5)
                     return
             except Exception:
                 continue
 
 '''
-if old not in s:
-    raise SystemExit('Expected _open_invoice_menu block not found')
-p.write_text(s.replace(old, new), encoding='utf-8')
+if old_menu not in s:
+    raise SystemExit('Expected invoice menu block not found')
+s = s.replace(old_menu, new_menu)
+
+p.write_text(s, encoding='utf-8')
 
 m = Path('/tmp/src/app/main.py')
 ms = m.read_text(encoding='utf-8')
-m.write_text(ms.replace('version="1.0.1"', 'version="1.0.3"'), encoding='utf-8')
+m.write_text(ms.replace('version="1.0.0"', 'version="1.0.3"'), encoding='utf-8')
 PY
 
-RUN pip install --no-cache-dir -r /tmp/src/requirements.txt \
+RUN python -m py_compile /tmp/src/app/exporter.py /tmp/src/app/main.py \
+    && pip install --no-cache-dir -r /tmp/src/requirements.txt \
     && cp -a /tmp/src/app /app/app \
     && rm -rf /tmp/source.zip /tmp/src /tmp/source-parts
 
