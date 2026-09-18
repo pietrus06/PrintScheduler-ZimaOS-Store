@@ -42,5 +42,6 @@ jobs:
             ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.0.0
             ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.1.0
             ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.2.0
+            ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.3.0
           cache-from: type=gha
           cache-to: type=gha,mode=max

@@ -1,0 +1,2 @@
+.paper.landscape{aspect-ratio:297/210;width:min(100%,330px)}
+@media(max-width:850px){.paper.landscape{width:min(100%,300px)}}

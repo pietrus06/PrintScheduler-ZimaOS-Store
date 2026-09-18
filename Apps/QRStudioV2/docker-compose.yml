@@ -1,7 +1,7 @@
 name: qr-studio-v2
 services:
   qr-studio-v2:
-    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.2.0
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.3.0
     pull_policy: always
     container_name: qr-studio-v2
     restart: unless-stopped
@@ -50,10 +50,10 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  version: "2.2.0"
-  update_at: "2026-09-17"
+  version: "2.3.0"
+  update_at: "2026-09-18"
   release_notes:
-    en_US: One-per-page mode now uses a 185 mm QR code and supports labels up to 64 pt.
-    fr_FR: Le mode un QR par page utilise désormais un QR de 185 mm et un texte jusqu’à 64 pt.
+    en_US: Choose portrait or landscape orientation; QR size, labels and page capacity adapt automatically.
+    fr_FR: Choisissez l’orientation portrait ou paysage ; la taille des QR, les textes et la capacité de la page s’adaptent automatiquement.
   repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
   support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
