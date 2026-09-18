@@ -22,8 +22,17 @@ https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages
 | Supabase Manager | 8096 | `/DATA/AppData/SupabaseManager` et `/DATA/AppData/SupabaseProjects` |
 | Supabase Cloud Manager | 8097 | `/DATA/AppData/SupabaseCloudManager` |
 | Galaxy Visual | 8098 | Volume Docker `galaxy_visual_data`, monté dans `/data` |
+| Amazon Invoice Exporter | 8101 (Chromium 5805) | `/DATA/AppData/AmazonInvoiceExporter/data` et `/DATA/AppData/AmazonInvoiceExporter/browser` |
 
-Les images publiques sont publiées dans `ghcr.io/pietrus06/printscheduler`, avec un tag distinct par application. Aucune compilation locale n’est nécessaire.
+Les images applicatives sont publiées sur GitHub Container Registry avec un tag distinct par application. Aucune compilation locale n’est nécessaire.
+
+## Amazon Invoice Exporter
+
+Amazon Invoice Exporter permet de se connecter manuellement à Amazon.fr dans un Chromium hébergé par ZimaOS, puis d’analyser une année de commandes et de télécharger automatiquement les factures et avoirs disponibles. L’application génère également un récapitulatif CSV et une archive ZIP.
+
+Après installation, ouvrez `http://IP_DU_ZIMAOS:8101`, cliquez sur **Ouvrir Chromium**, connectez-vous à Amazon.fr, puis revenez dans l’application pour lancer l’export. L’exporteur ne stocke pas les identifiants Amazon ; la session Chromium persistante reste dans `/DATA/AppData/AmazonInvoiceExporter/browser`.
+
+**Sécurité :** le port `5805` donne accès au navigateur contenant la session Amazon connectée. Ne l’exposez pas directement sur Internet ; réservez son accès au réseau local ou à un accès privé/VPN.
 
 ## Galaxy Visual
 
@@ -37,6 +46,6 @@ Les plans, positions, comptes et événements restent dans `galaxy_visual_data` 
 
 ## Publication et mises à jour
 
-GitHub Actions valide les manifestes et reconstruit le catalogue après chaque modification de `main`, ainsi que selon la planification du workflow. Pour Galaxy Visual, l’image est publiée après les tests du serveur, des parcours d’interface et d’un conteneur Docker avec volume persistant.
+GitHub Actions valide les manifestes et reconstruit le catalogue après chaque modification de `main`, ainsi que selon la planification du workflow. Les applications disposant d’une image dédiée sont construites et publiées sur GHCR par leurs workflows respectifs.
 
-PrintScheduler embarque un service WUD qui surveille les images marquées `wud.watch`. Galaxy Visual porte ces étiquettes : ce service peut donc aussi la mettre à jour lorsqu’il est déjà installé. Galaxy Visual n’installe pas un second WUD. Sans ce service, les mises à jour se font depuis ZimaOS. Publier sur Git ne garantit pas à lui seul une mise à jour immédiate de chaque serveur.
+PrintScheduler embarque un service WUD qui surveille les images marquées `wud.watch`. Les applications portant ces étiquettes peuvent également être suivies par ce service lorsqu’il est déjà installé. Sans ce service, les mises à jour se font depuis ZimaOS.

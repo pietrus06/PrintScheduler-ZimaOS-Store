@@ -1,0 +1,90 @@
+name: amazon-invoice-exporter
+
+services:
+  chromium:
+    image: jlesage/chromium:latest
+    pull_policy: always
+    container_name: amazon-invoice-browser
+    restart: unless-stopped
+    shm_size: "2gb"
+    environment:
+      CHROMIUM_REMOTE_DEBUGGING: "1"
+      CHROMIUM_REMOTE_DEBUGGING_PORT: "9222"
+      CHROMIUM_APP_URL: "https://www.amazon.fr/gp/css/order-history"
+      KEEP_APP_RUNNING: "1"
+      TZ: Europe/Monaco
+    volumes:
+      - type: bind
+        source: /DATA/AppData/AmazonInvoiceExporter/browser
+        target: /config
+    ports:
+      - target: 5800
+        published: "5805"
+        protocol: tcp
+    expose:
+      - "9222"
+
+  amazon-invoice-exporter:
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:amazon-invoice-exporter-1.0.0
+    pull_policy: always
+    container_name: amazon-invoice-exporter
+    restart: unless-stopped
+    depends_on:
+      - chromium
+    environment:
+      CDP_URL: "http://chromium:9222"
+      AMAZON_BASE_URL: "https://www.amazon.fr"
+      DATA_DIR: "/data"
+      BROWSER_PUBLIC_PORT: "5805"
+      DEFAULT_YEAR: "2026"
+      TZ: Europe/Monaco
+    volumes:
+      - type: bind
+        source: /DATA/AppData/AmazonInvoiceExporter/data
+        target: /data
+    ports:
+      - target: 8787
+        published: "8101"
+        protocol: tcp
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/api/config', timeout=4)"
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+x-casaos:
+  id: fr.pietrus06.amazon-invoice-exporter
+  main: amazon-invoice-exporter
+  index: /
+  port_map: "8101"
+  scheme: http
+  icon: https://cdn.jsdelivr.net/gh/pietrus06/PrintScheduler-ZimaOS-Store@main/Apps/AmazonInvoiceExporter/icon.svg
+  title:
+    en_US: Amazon Invoice Exporter
+    fr_FR: Amazon Invoice Exporter
+  tagline:
+    en_US: Bulk export Amazon.fr invoices from a persistent browser session.
+    fr_FR: Exportez en masse vos factures Amazon.fr depuis une session navigateur persistante.
+  description:
+    en_US: Sign in manually to Amazon.fr in the bundled Chromium session, scan an order year and download available invoices and credit notes. The exporter never stores your Amazon credentials. It generates CSV summaries and ZIP archives.
+    fr_FR: Connectez-vous manuellement à Amazon.fr dans la session Chromium intégrée, analysez une année de commandes et téléchargez les factures et avoirs disponibles. L’exporteur ne stocke jamais vos identifiants Amazon. Il génère un récapitulatif CSV et une archive ZIP.
+  author: pietrus06
+  developer: Pierre
+  category: Utilities
+  architectures:
+    - amd64
+  version: "1.0.0"
+  update_at: "2026-09-18"
+  release_notes:
+    en_US: Initial Amazon.fr release with persistent Chromium login, invoice and credit-note export, CSV manifest and ZIP archive.
+    fr_FR: Première version Amazon.fr avec session Chromium persistante, export des factures et avoirs, récapitulatif CSV et archive ZIP.
+  repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
+  support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues

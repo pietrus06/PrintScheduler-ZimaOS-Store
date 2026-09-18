@@ -6,8 +6,8 @@
     "fr_FR": "Boutique Pierre ZimaOS"
   },
   "description": {
-    "en_US": "Personal ZimaOS store for PrintScheduler, Supabase Manager, Supabase Cloud Manager and Galaxy Visual.",
-    "fr_FR": "Boutique ZimaOS personnelle pour PrintScheduler, Supabase Manager, Supabase Cloud Manager et Galaxy Visual."
+    "en_US": "Personal ZimaOS store for PrintScheduler, Supabase Manager, Supabase Cloud Manager, Galaxy Visual and Amazon Invoice Exporter.",
+    "fr_FR": "Boutique ZimaOS personnelle pour PrintScheduler, Supabase Manager, Supabase Cloud Manager, Galaxy Visual et Amazon Invoice Exporter."
   },
   "maintainer": "pietrus06",
   "url": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store"
