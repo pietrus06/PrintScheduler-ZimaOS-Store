@@ -10,7 +10,7 @@ services:
     environment:
       CHROMIUM_REMOTE_DEBUGGING: "1"
       CHROMIUM_REMOTE_DEBUGGING_PORT: "9222"
-      CHROMIUM_APP_URL: "https://www.amazon.fr/gp/css/order-history"
+      CHROMIUM_APP_URL: "https://www.amazon.fr/your-orders/orders?timeFilter=year-2026"
       KEEP_APP_RUNNING: "1"
       TZ: Europe/Monaco
     volumes:
@@ -26,7 +26,7 @@ services:
         protocol: tcp
 
   amazon-invoice-exporter:
-    image: ghcr.io/pietrus06/printscheduler-zimaos-store:amazon-invoice-exporter-1.0.0
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:amazon-invoice-exporter-1.0.3
     pull_policy: always
     container_name: amazon-invoice-exporter
     restart: unless-stopped
@@ -79,10 +79,10 @@ x-casaos:
   category: Utilities
   architectures:
     - amd64
-  version: "1.0.1"
+  version: "1.0.3"
   update_at: "2026-09-18"
   release_notes:
-    en_US: Fix Chromium CDP connection by sharing Chromium's network namespace and using localhost for Playwright.
-    fr_FR: Corrige la connexion CDP à Chromium en partageant son espace réseau et en utilisant localhost pour Playwright.
+    en_US: Force the requested year instead of Amazon's 3-month default, and wait for invoice.pdf links loaded asynchronously from the Invoice popover.
+    fr_FR: Force l’année demandée au lieu des 3 derniers mois par défaut et attend les liens invoice.pdf chargés dynamiquement dans le menu Facture.
   repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
   support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
