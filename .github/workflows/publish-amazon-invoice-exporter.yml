@@ -5,7 +5,14 @@ on:
     branches:
       - main
     paths:
-      - "Apps/AmazonInvoiceExporter/source-v1.0.0.zip"
+      - "Apps/AmazonInvoiceExporter/source.part01.b64"
+      - "Apps/AmazonInvoiceExporter/source.part02.b64"
+      - "Apps/AmazonInvoiceExporter/source.part03.b64"
+      - "Apps/AmazonInvoiceExporter/source.part04.b64"
+      - "Apps/AmazonInvoiceExporter/source.part05.b64"
+      - "Apps/AmazonInvoiceExporter/source.part06.b64"
+      - "Apps/AmazonInvoiceExporter/source.part07.b64"
+      - "Apps/AmazonInvoiceExporter/source.part08.b64"
       - "Apps/AmazonInvoiceExporter/Dockerfile"
       - ".github/workflows/publish-amazon-invoice-exporter.yml"
   workflow_dispatch:
