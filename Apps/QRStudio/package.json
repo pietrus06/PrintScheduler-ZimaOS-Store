@@ -1,6 +1,6 @@
 {
   "name": "qr-studio",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "build": "esbuild src/app.js --bundle --minify --outfile=public/app.js",

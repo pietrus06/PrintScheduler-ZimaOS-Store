@@ -1,7 +1,7 @@
 name: qr-studio-v2
 services:
   qr-studio-v2:
-    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.0.0
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.1.0
     pull_policy: always
     container_name: qr-studio-v2
     restart: unless-stopped
@@ -50,10 +50,10 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  version: "2.0.0"
+  version: "2.1.0"
   update_at: "2026-09-17"
   release_notes:
-    en_US: Independent V2 application using a dedicated image, container, port and data directory.
-    fr_FR: Application V2 indépendante avec image, conteneur, port et stockage dédiés.
+    en_US: Larger effective label sizes, faithful preview and automatic page layout adjustment.
+    fr_FR: Texte réellement agrandi, aperçu fidèle et mise en page automatiquement adaptée.
   repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
   support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
