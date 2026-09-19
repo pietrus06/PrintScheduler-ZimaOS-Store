@@ -1,0 +1,25 @@
+{
+  "tagline": "Bulk export Amazon.fr invoices from a persistent browser session.",
+  "description": "Sign in manually to Amazon.fr in the bundled Chromium session, scan an order year and download available invoices and credit notes. The exporter never stores your Amazon credentials. It generates CSV summaries and ZIP archives.",
+  "author": "pietrus06",
+  "developer": "Pierre",
+  "category": "Utilities",
+  "architectures": [
+    "amd64"
+  ],
+  "update_at": "2026-09-18",
+  "repo": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store",
+  "support": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues",
+  "title": "Amazon Invoice Exporter",
+  "release_note": "Force the requested year instead of Amazon's 3-month default, and wait for invoice.pdf links loaded asynchronously from the Invoice popover.",
+  "base_url": "https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages",
+  "id": "fr.pietrus06.amazon-invoice-exporter",
+  "version": "1.0.3",
+  "categories": [
+    "utilities"
+  ],
+  "min_memory": 0,
+  "min_image_size": {
+    "amd64": 518642477
+  }
+}

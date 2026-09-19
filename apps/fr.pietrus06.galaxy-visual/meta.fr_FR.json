@@ -1,0 +1,7 @@
+{
+  "id": "fr.pietrus06.galaxy-visual",
+  "title": "Galaxy Visual",
+  "release_note": "Première version avec plans interactifs, positions persistantes, comptes, journal et démonstration isolée. Raccordement direct Galaxy à réaliser.",
+  "tagline": "Plans des sites et placement graphique des détecteurs.",
+  "description": "Importez vos plans PDF ou images, placez les détecteurs et organisez vos sites et centrales. Une démonstration isolée permet de simuler des alarmes graphiques. Données persistantes et sauvegardes ZIP. La connexion directe Honeywell et les commandes d’armement ne sont pas encore implémentées. Au premier lancement, créez votre compte administrateur avec le code indiqué dans les journaux du conteneur."
+}

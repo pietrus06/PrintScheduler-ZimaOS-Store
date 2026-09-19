@@ -1,0 +1,7 @@
+{
+  "id": "fr.pietrus06.qr-studio-v2",
+  "title": "QR Studio V2",
+  "release_note": "Choisissez l’orientation portrait ou paysage ; la taille des QR, les textes et la capacité de la page s’adaptent automatiquement.",
+  "tagline": "Générez des QR codes numérotés avec protection des doublons et texte réglable.",
+  "description": "Nouvelle application QR Studio indépendante avec historique persistant, avertissement ou blocage des doublons, taille du texte réglable, export PDF et impression."
+}
