@@ -23,7 +23,7 @@ services:
     healthcheck:
       test:
         - CMD-SHELL
-        - wget -qO- http://localhost:8787/health >/dev/null
+        - wget -qO- http://127.0.0.1:8787/health >/dev/null
       interval: 30s
       timeout: 5s
       retries: 5
@@ -50,10 +50,10 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  version: "2.3.0"
-  update_at: "2026-09-18"
+  version: "2.3.1"
+  update_at: "2026-09-25"
   release_notes:
-    en_US: Choose portrait or landscape orientation; QR size, labels and page capacity adapt automatically.
-    fr_FR: Choisissez l’orientation portrait ou paysage ; la taille des QR, les textes et la capacité de la page s’adaptent automatiquement.
+    en_US: Fix the container health check when localhost resolves to IPv6 while QR Studio listens on IPv4.
+    fr_FR: Corrige le contrôle de santé du conteneur lorsque localhost utilise IPv6 alors que QR Studio écoute en IPv4.
   repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
   support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
