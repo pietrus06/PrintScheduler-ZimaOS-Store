@@ -1,7 +1,7 @@
 name: qr-studio-v2
 services:
   qr-studio-v2:
-    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.3.0
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.3.1
     pull_policy: always
     container_name: qr-studio-v2
     restart: unless-stopped
@@ -18,8 +18,8 @@ services:
         source: /DATA/AppData/QRStudioV2
         target: /app/data
     labels:
-      wud.watch: "true"
-      wud.watch.digest: "true"
+      wud.watch: "false"
+      wud.watch.digest: "false"
     healthcheck:
       test:
         - CMD-SHELL
@@ -53,7 +53,7 @@ x-casaos:
   version: "2.3.1"
   update_at: "2026-09-25"
   release_notes:
-    en_US: Fix the container health check when localhost resolves to IPv6 while QR Studio listens on IPv4.
-    fr_FR: Corrige le contrôle de santé du conteneur lorsque localhost utilise IPv6 alors que QR Studio écoute en IPv4.
+    en_US: Fix the container health check and disable digest auto-updates for fixed version tags.
+    fr_FR: Corrige le contrôle de santé du conteneur et désactive les mises à jour automatiques par digest sur les versions figées.
   repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
   support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
