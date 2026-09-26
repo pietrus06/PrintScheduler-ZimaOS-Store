@@ -1,0 +1,41 @@
+name: qr-studio-v2
+services:
+  qr-studio-v2:
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.3.1@sha256:44002acbc60ff264ad0b8a76e73c3d8bf19406fd36c5f7c9cba994652544e7b4
+    pull_policy: always
+    container_name: qr-studio-v2
+    restart: unless-stopped
+    ports:
+      - target: 8787
+        published: "8100"
+        protocol: tcp
+    environment:
+      PORT: "8787"
+      DATA_DIR: /app/data
+      TZ: Europe/Monaco
+    volumes:
+      - type: bind
+        source: /DATA/AppData/QRStudioV2
+        target: /app/data
+    labels:
+      wud.watch: "false"
+      wud.watch.digest: "false"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget -qO- http://127.0.0.1:8787/health >/dev/null
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+x-casaos:
+  id: fr.pietrus06.qr-studio-v2
+  main: qr-studio-v2
+  index: /
+  port_map: "8100"
+  scheme: http
+  icon: https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages/apps/fr.pietrus06.qr-studio-v2/assets/icon.svg
+  title:
+    en_US: QR Studio V2
+    fr_FR: QR Studio V2
+  version: "2.3.1"

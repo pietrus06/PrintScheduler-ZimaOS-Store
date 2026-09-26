@@ -1,0 +1,27 @@
+{
+  "tagline": "Generate numbered QR codes with duplicate protection and adjustable labels.",
+  "description": "New independent QR Studio application with persistent generation history, duplicate warning or blocking, adjustable label size, PDF export and printing.",
+  "author": "pietrus06",
+  "developer": "Pierre",
+  "category": "Utilities",
+  "architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "update_at": "2026-09-25",
+  "repo": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store",
+  "support": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues",
+  "title": "QR Studio V2",
+  "release_note": "Fix the container health check and disable digest auto-updates for fixed version tags.",
+  "base_url": "https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages",
+  "id": "fr.pietrus06.qr-studio-v2",
+  "version": "2.3.1",
+  "categories": [
+    "utilities"
+  ],
+  "min_memory": 0,
+  "min_image_size": {
+    "amd64": 68882621,
+    "arm64": 69238652
+  }
+}

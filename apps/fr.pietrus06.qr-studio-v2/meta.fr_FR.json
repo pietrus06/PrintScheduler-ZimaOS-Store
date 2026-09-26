@@ -1,0 +1,7 @@
+{
+  "id": "fr.pietrus06.qr-studio-v2",
+  "title": "QR Studio V2",
+  "tagline": "Générez des QR codes numérotés avec protection des doublons et texte réglable.",
+  "release_note": "Corrige le contrôle de santé du conteneur et désactive les mises à jour automatiques par digest sur les versions figées.",
+  "description": "Nouvelle application QR Studio indépendante avec historique persistant, avertissement ou blocage des doublons, taille du texte réglable, export PDF et impression."
+}
