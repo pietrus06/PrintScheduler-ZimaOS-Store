@@ -1,0 +1,25 @@
+{
+  "tagline": "Site plans and visual detector placement.",
+  "description": "Import PDF or image floor plans, place detectors, organize sites and panels, and try simulated alarms in an isolated demo. Persistent data and ZIP backups. Direct Honeywell communication and arming controls are not implemented. On first launch, use the setup code from the container logs to create your administrator account.",
+  "author": "pietrus06",
+  "developer": "Pierre",
+  "category": "Utilities",
+  "architectures": [
+    "amd64"
+  ],
+  "update_at": "2026-09-16",
+  "repo": "https://github.com/pietrus06/PrintScheduler",
+  "support": "https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues",
+  "title": "Galaxy Visual",
+  "release_note": "Initial release with interactive plans, persistent detector positions, accounts, event journal and isolated demo. Direct Galaxy connection pending.",
+  "base_url": "https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages",
+  "id": "fr.pietrus06.galaxy-visual",
+  "version": "0.1.0",
+  "categories": [
+    "utilities"
+  ],
+  "min_memory": 0,
+  "min_image_size": {
+    "amd64": 59761450
+  }
+}
