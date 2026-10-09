@@ -1,2 +1,8 @@
 .paper.landscape{aspect-ratio:297/210;width:min(100%,330px)}
+.mode-grid .label-mode{grid-column:1/-1}
+.sample-second{display:none}
+.paper.label85x45-preview{aspect-ratio:85/45;width:min(100%,360px);grid-template-columns:1fr 1fr;align-items:center;gap:8px;padding:10px}
+.paper.label85x45-preview .sample{display:block;width:100%;font-size:9px;box-shadow:none}
+.paper.label85x45-preview .sample canvas{width:min(100%,120px);margin:auto}
+.paper.label85x45-preview .sample strong{margin-top:2px}
 @media(max-width:850px){.paper.landscape{width:min(100%,300px)}}

@@ -1,7 +1,7 @@
 name: qr-studio-v2
 services:
   qr-studio-v2:
-    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.3.1
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:qr-studio-v2-2.4.0
     pull_policy: always
     container_name: qr-studio-v2
     restart: unless-stopped
@@ -50,10 +50,10 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  version: "2.3.1"
-  update_at: "2026-09-25"
+  version: "2.4.0"
+  update_at: "2026-10-09"
   release_notes:
-    en_US: Fix the container health check and disable digest auto-updates for fixed version tags.
-    fr_FR: Corrige le contrôle de santé du conteneur et désactive les mises à jour automatiques par digest sur les versions figées.
+    en_US: Adds an exact 85 × 45 mm label template with two numbered QR codes per label.
+    fr_FR: Ajoute un modèle exact d’étiquette 85 × 45 mm avec deux QR codes numérotés par étiquette.
   repo: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store
   support: https://github.com/pietrus06/PrintScheduler-ZimaOS-Store/issues
