@@ -1,0 +1,7 @@
+{
+  "id": "fr.pietrus06.supabase-manager",
+  "title": "Supabase Manager",
+  "description": "Tableau de bord ZimaOS permettant de créer des stacks Supabase indépendantes depuis le template Docker officiel, générer les secrets, attribuer automatiquement les ports et gérer démarrage, arrêt, logs, clés de connexion et sauvegardes.",
+  "tagline": "Créez et gérez plusieurs projets Supabase auto-hébergés sur ZimaOS.",
+  "release_note": "Première version du gestionnaire multi-projets Supabase."
+}
