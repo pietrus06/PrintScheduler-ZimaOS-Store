@@ -1,0 +1,34 @@
+{
+  "apps": [
+    {
+      "id": "fr.pietrus06.amazon-invoice-exporter",
+      "title": "Amazon Invoice Exporter",
+      "tagline": "Exportez en masse vos factures Amazon.fr depuis une session navigateur persistante."
+    },
+    {
+      "id": "fr.pietrus06.galaxy-visual",
+      "title": "Galaxy Visual",
+      "tagline": "Plans des sites et placement graphique des détecteurs."
+    },
+    {
+      "id": "fr.pietrus06.printscheduler",
+      "title": "PrintScheduler",
+      "tagline": "Programmez l'impression réseau et l'envoi de PDF par e-mail."
+    },
+    {
+      "id": "fr.pietrus06.qr-studio-v2",
+      "title": "QR Studio V2",
+      "tagline": "Générez des QR codes numérotés avec protection des doublons et texte réglable."
+    },
+    {
+      "id": "fr.pietrus06.supabase-cloud-manager",
+      "title": "Supabase Cloud Manager",
+      "tagline": "Gérez plusieurs comptes et projets Supabase Cloud depuis un tableau de bord sécurisé."
+    },
+    {
+      "id": "fr.pietrus06.supabase-manager",
+      "title": "Supabase Manager",
+      "tagline": "Créez et gérez plusieurs projets Supabase auto-hébergés sur ZimaOS."
+    }
+  ]
+}

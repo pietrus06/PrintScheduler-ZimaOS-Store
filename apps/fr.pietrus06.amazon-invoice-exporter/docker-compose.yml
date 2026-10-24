@@ -1,0 +1,71 @@
+name: amazon-invoice-exporter
+
+services:
+  chromium:
+    image: jlesage/chromium:latest
+    pull_policy: always
+    container_name: amazon-invoice-browser
+    restart: unless-stopped
+    shm_size: "2gb"
+    environment:
+      CHROMIUM_REMOTE_DEBUGGING: "1"
+      CHROMIUM_REMOTE_DEBUGGING_PORT: "9222"
+      CHROMIUM_APP_URL: "https://www.amazon.fr/your-orders/orders?timeFilter=year-2026"
+      KEEP_APP_RUNNING: "1"
+      TZ: Europe/Monaco
+    volumes:
+      - type: bind
+        source: /DATA/AppData/AmazonInvoiceExporter/browser
+        target: /config
+    ports:
+      - target: 5800
+        published: "5805"
+        protocol: tcp
+      - target: 8787
+        published: "8101"
+        protocol: tcp
+
+  amazon-invoice-exporter:
+    image: ghcr.io/pietrus06/printscheduler-zimaos-store:amazon-invoice-exporter-1.0.3
+    pull_policy: always
+    container_name: amazon-invoice-exporter
+    restart: unless-stopped
+    depends_on:
+      - chromium
+    network_mode: "service:chromium"
+    environment:
+      CDP_URL: "http://127.0.0.1:9222"
+      AMAZON_BASE_URL: "https://www.amazon.fr"
+      DATA_DIR: "/data"
+      BROWSER_PUBLIC_PORT: "5805"
+      DEFAULT_YEAR: "2026"
+      TZ: Europe/Monaco
+    volumes:
+      - type: bind
+        source: /DATA/AppData/AmazonInvoiceExporter/data
+        target: /data
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/api/config', timeout=4)"
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+x-casaos:
+  id: fr.pietrus06.amazon-invoice-exporter
+  main: amazon-invoice-exporter
+  index: /
+  port_map: "8101"
+  scheme: http
+  icon: https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages/apps/fr.pietrus06.amazon-invoice-exporter/assets/icon.svg
+  title:
+    en_US: Amazon Invoice Exporter
+    fr_FR: Amazon Invoice Exporter
+  version: "1.0.3"
