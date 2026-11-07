@@ -1,0 +1,54 @@
+name: galaxy-visual
+
+services:
+  galaxy-visual:
+    image: ghcr.io/pietrus06/printscheduler:galaxy-visual-latest
+    container_name: galaxy-visual
+    restart: unless-stopped
+    ports:
+      - target: 8097
+        published: "8098"
+        protocol: tcp
+    environment:
+      DATA_DIR: /data
+      PORT: "8097"
+      COOKIE_SECURE: "false"
+      TZ: Europe/Monaco
+    volumes:
+      - galaxy-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8097/health', timeout=4)"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  galaxy-data:
+    name: galaxy_visual_data
+
+x-casaos:
+  id: fr.pietrus06.galaxy-visual
+  main: galaxy-visual
+  index: /
+  port_map: "8098"
+  scheme: http
+  icon: https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages/apps/fr.pietrus06.galaxy-visual/assets/icon.svg
+  title:
+    en_US: Galaxy Visual
+    fr_FR: Galaxy Visual
+  version: "0.1.0"

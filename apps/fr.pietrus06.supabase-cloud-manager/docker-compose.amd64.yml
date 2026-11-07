@@ -1,0 +1,42 @@
+name: supabase-cloud-manager
+services:
+  supabase-cloud-manager:
+    image: ghcr.io/pietrus06/printscheduler:supabase-cloud-manager-latest@sha256:e389684d55ec9793b3371d93e217bb8fcd0a8af8447673279c2229664a408c1b
+    container_name: supabase-cloud-manager
+    restart: unless-stopped
+    ports:
+      - target: 8097
+        published: "8097"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/SupabaseCloudManager
+        target: /app/data
+    environment:
+      PORT: "8097"
+      DATA_ROOT: /app/data
+      SUPABASE_API_BASE: https://api.supabase.com/v1
+      SUPABASE_REQUEST_TIMEOUT: "30"
+      TZ: Europe/Monaco
+    labels:
+      wud.watch: "true"
+      wud.watch.digest: "true"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - curl --fail --silent http://localhost:8097/health >/dev/null
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+x-casaos:
+  id: fr.pietrus06.supabase-cloud-manager
+  main: supabase-cloud-manager
+  index: /
+  port_map: "8097"
+  scheme: http
+  icon: https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages/apps/fr.pietrus06.supabase-cloud-manager/assets/icon.svg
+  title:
+    en_US: Supabase Cloud Manager
+    fr_FR: Supabase Cloud Manager
+  version: "0.1.2"

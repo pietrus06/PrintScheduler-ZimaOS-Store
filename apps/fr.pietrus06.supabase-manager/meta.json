@@ -1,0 +1,25 @@
+{
+  "tagline": "Create and manage multiple self-hosted Supabase projects on ZimaOS.",
+  "description": "A ZimaOS dashboard that provisions independent Supabase stacks from the official Supabase Docker template, generates secrets, allocates ports, manages lifecycle, logs, connection keys and backups.",
+  "author": "pietrus06",
+  "developer": "Pierre",
+  "category": "Developer",
+  "architectures": [
+    "amd64"
+  ],
+  "update_at": "2026-09-09",
+  "repo": "https://github.com/pietrus06/PrintScheduler",
+  "support": "https://github.com/pietrus06/PrintScheduler/issues",
+  "title": "Supabase Manager",
+  "release_note": "Initial multi-project Supabase Manager release.",
+  "base_url": "https://raw.githubusercontent.com/pietrus06/PrintScheduler-ZimaOS-Store/gh-pages",
+  "id": "fr.pietrus06.supabase-manager",
+  "version": "0.1.0",
+  "categories": [
+    "developer"
+  ],
+  "min_memory": 0,
+  "min_image_size": {
+    "amd64": 70158749
+  }
+}
