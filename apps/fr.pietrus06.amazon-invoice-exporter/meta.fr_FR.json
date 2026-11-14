@@ -1,0 +1,7 @@
+{
+  "id": "fr.pietrus06.amazon-invoice-exporter",
+  "title": "Amazon Invoice Exporter",
+  "tagline": "Exportez en masse vos factures Amazon.fr depuis une session navigateur persistante.",
+  "release_note": "Force l’année demandée au lieu des 3 derniers mois par défaut et attend les liens invoice.pdf chargés dynamiquement dans le menu Facture.",
+  "description": "Connectez-vous manuellement à Amazon.fr dans la session Chromium intégrée, analysez une année de commandes et téléchargez les factures et avoirs disponibles. L’exporteur ne stocke jamais vos identifiants Amazon. Il génère un récapitulatif CSV et une archive ZIP."
+}
