@@ -1,0 +1,7 @@
+{
+  "id": "fr.pietrus06.printscheduler",
+  "title": "PrintScheduler",
+  "description": "PrintScheduler fonctionne en continu sur ZimaOS. Il programme les impressions PDF sur les copieurs réseau via CUPS, programme les envois PDF par SMTP, mémorise les destinataires e-mail et conserve toutes ses données dans un dossier persistant. Un service WUD intégré surveille le digest de l'image latest et recrée automatiquement PrintScheduler lorsqu'une nouvelle image est publiée.",
+  "tagline": "Programmez l'impression réseau et l'envoi de PDF par e-mail.",
+  "release_note": "Première version du store ZimaOS avec mise à jour automatique du digest de l'image Docker."
+}

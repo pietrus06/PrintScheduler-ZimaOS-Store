@@ -1,0 +1,7 @@
+{
+  "id": "fr.pietrus06.supabase-cloud-manager",
+  "title": "Supabase Cloud Manager",
+  "description": "Tableau de bord multi-comptes pour Supabase Cloud avec jetons chiffrés, inventaire centralisé, santé des services, clés API et actions de cycle de vie.",
+  "tagline": "Gérez plusieurs comptes et projets Supabase Cloud depuis un tableau de bord sécurisé.",
+  "release_note": "Ajoute l’e-mail de connexion, le stockage chiffré du mot de passe et des notes, avec affichage temporaire protégé du mot de passe."
+}
