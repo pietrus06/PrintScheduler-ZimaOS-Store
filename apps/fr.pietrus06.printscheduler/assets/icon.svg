@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">PrintScheduler</title>
+  <desc id="desc">Printer and scheduling clock icon</desc>
+  <rect width="512" height="512" rx="112" fill="#17324d"/>
+  <rect x="112" y="88" width="288" height="150" rx="24" fill="#ffffff"/>
+  <rect x="86" y="202" width="340" height="188" rx="38" fill="#e9f1f7"/>
+  <rect x="126" y="330" width="260" height="102" rx="18" fill="#ffffff"/>
+  <circle cx="366" cy="250" r="18" fill="#2364aa"/>
+  <circle cx="166" cy="250" r="10" fill="#657586"/>
+  <circle cx="256" cy="286" r="63" fill="#2364aa"/>
+  <path d="M256 249v39l30 19" fill="none" stroke="#ffffff" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
